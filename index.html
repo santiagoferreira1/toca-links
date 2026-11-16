@@ -3,41 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Toca do Roshan: aluguel de jogos de tabuleiro em Russas/CE. Acervo, noites de jogos, WhatsApp e endereço.">
+<meta name="description" content="Toca do Roshan Luderia: aluguel de jogos de tabuleiro em Russas/CE. Acervo, noites de jogos, WhatsApp e endereço.">
 <title>Toca do Roshan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600;800&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 body{margin:0}
 img{max-width:100%}
 
-/* Layout: uma coluna estreita de "tábuas" dentro da toca; os três olhos do Roshan no topo, links em ordem de importância */
+/* Layout: uma coluna de cartões escuros sobre areia clara; no topo a logo horizontal nova, com o Roshan vivo na caverna */
 :root{
-  --cave:#14120f;        /* fundo da toca */
-  --stone:#221e19;       /* tábuas / cartões */
-  --stone-hi:#2d2720;    /* hover */
-  --moss:#5f6b3c;        /* detalhe musgo */
-  --ember:#f2a93b;       /* olhos do Roshan (acento) */
-  --ember-dim:#a8722a;
-  --bone:#efe6d6;        /* texto */
-  --ash:#a89e8d;         /* texto secundário */
-  --line:#3a332a;
-  --page:#ddd0b6;        /* fundo claro: areia/pedra da entrada da toca */
-  --page-hi:#ece3d0;
-  --ink:#2a2118;         /* texto sobre o fundo claro */
-  --ink-soft:#6b5d4a;
-  --ember-ink:#a85a12;   /* acento legível no fundo claro */
-  --page-line:#b9a888;
-  --display:"Grenze Gotisch","Times New Roman",serif;
+  /* paleta da logo: Laranja · Brasa · Rocha · Toca · Joia */
+  --laranja:#F28C1B;
+  --brasa:#D2610F;
+  --rocha:#9A3208;
+  --toca:#1E1C1A;        /* cartões */
+  --toca-hi:#2B2825;     /* hover */
+  --joia:#FFF4E6;
+  --line:#3A3530;
+  --bone:#F4EDE4;        /* texto nos cartões */
+  --ash:#B3A795;         /* texto secundário nos cartões */
+  --page:#EFE7DA;        /* fundo areia */
+  --page-hi:#F7F1E8;
+  --ink:#1E1C1A;         /* texto no fundo claro */
+  --ink-soft:#6B5D4A;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --label:"Oswald","Arial Narrow",sans-serif;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:light;
 }
 *{box-sizing:border-box}
 body{
   background:
-    radial-gradient(120% 55% at 50% 0%, var(--page-hi) 0%, transparent 65%),
-    radial-gradient(90% 50% at 50% 110%, #cbbd9e 0%, transparent 70%),
+    radial-gradient(120% 50% at 50% 0%, var(--page-hi) 0%, transparent 65%),
     var(--page);
   color:var(--ink);
   font-family:var(--body);
@@ -48,106 +47,93 @@ body{
   padding-right:max(16px, env(safe-area-inset-right, 0px));
   padding-block:40px 48px;
 }
-.wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.wrap{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
 
-/* ---------- topo ---------- */
-header{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.lair{position:relative;width:230px;height:156px;max-width:100%}
-.lair svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.lair .rock{fill:#cdbd9b;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:miter;stroke-linecap:square}
-.lair .facet{fill:none;stroke:var(--ink-soft);stroke-width:1.5;stroke-linecap:square;opacity:.7}
-.lair .hole{fill:#0b0907;stroke:var(--ink);stroke-width:2;stroke-linejoin:miter}
-.gaze{position:absolute;inset:0;z-index:1;filter:drop-shadow(0 0 5px rgba(242,169,59,.55));animation:gaze 9s ease-in-out infinite}
-.eye{position:absolute;background:var(--ember);box-shadow:0 0 14px 2px rgba(242,169,59,.55);animation:blink 9s infinite}
-/* joia na testa: não pisca, brilha */
-.eye.top{width:22px;height:22px;border-radius:50%;left:104px;top:90px;overflow:hidden;
-  background:radial-gradient(circle at 35% 30%, #ffe3a6 0%, var(--ember) 45%, #c97a1c 100%);
-  animation:gem 9s ease-in-out infinite}
-.eye.top::after{content:"";position:absolute;top:-30%;left:-120%;width:60%;height:160%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);transform:rotate(25deg);
-  animation:glint 9s ease-in-out infinite}
-@keyframes gem{
-  0%,78%,100%{box-shadow:0 0 14px 2px rgba(242,169,59,.55)}
-  86%{box-shadow:0 0 26px 8px rgba(255,200,110,.85)}
-}
-@keyframes glint{0%,78%{left:-120%}90%,100%{left:160%}}
-.eye.l,.eye.r{box-shadow:none;width:26px;height:13px;top:124px;border-radius:2px 14px 2px 14px}
-.eye.l{left:80px;clip-path:polygon(0 0,100% 45%,100% 100%,0 100%);animation-delay:.08s}
-.eye.r{right:80px;clip-path:polygon(0 45%,100% 0,100% 100%,0 100%);animation-delay:.08s}
-/* olha pra frente, abaixa o olhar e varre o acervo (esq. → dir.), volta pra frente e pisca */
+/* ---------- topo: logo horizontal ---------- */
+header{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+.brand{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;max-width:100%}
+.brand svg{width:clamp(150px,45vw,210px);height:auto;flex:none;overflow:visible}
+.wordmark{display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-width:0}
+.wordmark .top{font-family:var(--label);font-weight:600;font-size:clamp(15px,4.6vw,22px);letter-spacing:.22em;line-height:1}
+.wordmark .name{font-family:var(--display);font-size:clamp(46px,14vw,76px);white-space:nowrap;line-height:.95;margin-top:3px;letter-spacing:.01em}
+.wordmark .pill{margin-top:8px;align-self:stretch;text-align:center;background:var(--laranja);color:var(--toca);font-family:var(--label);font-weight:600;font-size:clamp(11px,3.2vw,14px);letter-spacing:.4em;padding:2px 9px 2px 13px;border-radius:999px;line-height:1.4}
+.brand h1{margin:0;font:inherit}
+
+/* Roshan vivo: olha pra frente, abaixa o olhar e varre o acervo, volta e pisca; a joia brilha */
+.gaze{animation:gaze 9s ease-in-out infinite}
+.eye{transform-box:fill-box;transform-origin:center;animation:blink 9s infinite}
+.halo{transform-box:fill-box;transform-origin:center;animation:halo 9s ease-in-out infinite}
+.glint{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:glint 9s ease-in-out infinite}
 @keyframes gaze{
   0%,14%{transform:translate(0,0)}
-  22%,34%{transform:translate(-7px,9px)}
-  44%,56%{transform:translate(7px,9px)}
+  22%,34%{transform:translate(-12px,10px)}
+  44%,56%{transform:translate(12px,10px)}
   64%,100%{transform:translate(0,0)}
 }
-@keyframes blink{0%,14%,72%,76%,100%{transform:scaleY(1)}20%,58%{transform:scaleY(.72)}74%{transform:scaleY(.08)}}
-@media (prefers-reduced-motion:reduce){.eye,.gaze,.eye.top,.eye.top::after{animation:none}}
+@keyframes blink{0%,14%,72%,76%,100%{transform:scaleY(1)}20%,58%{transform:scaleY(.7)}74%{transform:scaleY(.08)}}
+@keyframes halo{0%,78%,100%{opacity:.25;transform:scale(1)}86%{opacity:.6;transform:scale(1.35)}}
+@keyframes glint{0%,80%,94%,100%{transform:scale(0) rotate(0)}87%{transform:scale(1) rotate(45deg)}}
+@media (prefers-reduced-motion:reduce){.gaze,.eye,.halo,.glint{animation:none}}
 
-h1{font-family:var(--display);font-weight:800;font-size:2.6rem;line-height:1;margin:0;letter-spacing:.01em;text-wrap:balance}
-h1 span{color:var(--ember-ink)}
-.tag{margin:0;color:var(--ink-soft);max-width:32ch}
-.handle{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ember-ink);font-weight:700}
+.tag{margin:0;color:var(--ink-soft);max-width:34ch}
+.handle{font-family:var(--label);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rocha);font-weight:600}
 
 /* ---------- links ---------- */
 .group{display:flex;flex-direction:column;gap:10px}
-.label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;margin:0 0 2px 4px}
+.label{font-family:var(--label);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0 0 2px 4px}
 a.link{
   display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:14px;
-  padding:14px 16px;background:var(--stone);border:1px solid var(--line);border-radius:10px;
+  padding:14px 16px;background:var(--toca);border:1px solid var(--line);border-radius:10px;
   color:var(--bone);text-decoration:none;transition:background .15s, border-color .15s, transform .15s;
 }
-a.link:hover{background:var(--stone-hi);border-color:var(--ember-dim);transform:translateY(-1px)}
-a.link:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
-a.link .ic{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:#17140f;border:1px solid var(--line)}
-a.link .ic svg{width:22px;height:22px;stroke:var(--ember);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+a.link:hover{background:var(--toca-hi);border-color:var(--brasa);transform:translateY(-1px)}
+a.link:focus-visible,a.event:focus-visible{outline:2px solid var(--rocha);outline-offset:3px}
+a.link .ic{width:40px;height:40px;border-radius:8px;display:grid;place-items:center;background:#151311;border:1px solid var(--line)}
+a.link .ic svg{width:22px;height:22px;stroke:var(--laranja);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 a.link .t{min-width:0}
 a.link b{display:block;font-weight:600;font-size:1rem}
 a.link small{display:block;color:var(--ash);font-size:.82rem}
-a.link .go{color:var(--ember-dim);font-size:1.1rem}
+a.link .go{color:var(--laranja);font-size:1.1rem}
 
-a.link.main{background:var(--ember);border-color:#c98420;color:#1a1209;box-shadow:0 6px 18px -8px rgba(120,70,10,.6)}
-a.link.main:hover{background:#ffb84d;border-color:#ffb84d}
-a.link.main small{color:#4a3415}
-a.link.main .ic{background:#1a1209;border-color:#1a1209}
-a.link.main .go{color:#1a1209}
-
-a.link.pending{border-style:dashed;pointer-events:none;opacity:.6}
-
-/* ---------- preços ---------- */
-.prices{color:var(--bone);background:var(--stone);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.prices h2{font-family:var(--display);font-weight:600;font-size:1.35rem;margin:0 0 2px}
-.prices p{margin:0 0 10px;color:var(--ash);font-size:.85rem}
-.prices ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:6px 18px}
+a.link.main{background:var(--laranja);border-color:var(--brasa);color:var(--toca);box-shadow:0 6px 18px -8px rgba(154,50,8,.55)}
+a.link.main:hover{background:#FF9D33;border-color:var(--brasa)}
+a.link.main small{color:#4A2A0C}
+a.link.main .ic{background:var(--toca);border-color:var(--toca)}
+a.link.main .go{color:var(--toca)}
 
 /* ---------- como funciona ---------- */
 .steps{list-style:none;margin:2px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .steps li{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:.78rem;color:var(--ink-soft);line-height:1.25}
-.steps i{font-style:normal;font-family:var(--display);font-weight:800;font-size:1.05rem;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--ember-ink);color:var(--ember-ink);background:var(--page-hi)}
+.steps i{font-style:normal;font-family:var(--display);font-size:1.05rem;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--rocha);color:var(--rocha);background:var(--page-hi)}
 
 /* ---------- evento ---------- */
 a.event{
   display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:stretch;
   padding:16px;border-radius:12px;text-decoration:none;color:var(--bone);
-  background:linear-gradient(135deg,#2b2417 0%,#1d1a14 70%);
-  border:1px solid var(--ember-dim);box-shadow:0 0 0 4px rgba(242,169,59,.06);
+  background:linear-gradient(135deg,#2A221A 0%,var(--toca) 70%);
+  border:1px solid var(--brasa);box-shadow:0 0 0 4px rgba(242,140,27,.08);
   transition:transform .15s, box-shadow .15s;
 }
-a.event:hover{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(242,169,59,.14)}
-a.event:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
-.cal{align-self:start;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;background:var(--cave);border:1px solid var(--line);padding:8px 0}
-.cal .dow{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);font-weight:700}
-.cal .day{font-family:var(--display);font-weight:800;font-size:2.1rem;line-height:1;font-variant-numeric:tabular-nums}
-.cal .mon{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ash)}
+a.event:hover{transform:translateY(-1px);box-shadow:0 0 0 4px rgba(242,140,27,.18)}
+.cal{align-self:start;height:88px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;background:#151311;border:1px solid var(--line);padding:8px 0}
+.cal .dow{font-family:var(--label);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);font-weight:600}
+.cal .day{font-family:var(--display);font-size:2.1rem;line-height:1.05;font-variant-numeric:tabular-nums}
+.cal .mon{font-family:var(--label);font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ash)}
 .ev-body{display:flex;flex-direction:column;gap:2px;min-width:0}
-.ev-kicker{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);font-weight:700;filter:brightness(1.5)}
-.ev-body b{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1.05;margin-bottom:4px}
+.ev-kicker{font-family:var(--label);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--laranja);font-weight:600}
+.ev-body b{font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.05;margin-bottom:4px;letter-spacing:.01em}
 .ev-info{font-size:.84rem;color:var(--ash)}
-.ev-cta{margin-top:8px;font-size:.86rem;font-weight:600;color:var(--ember)}
+.ev-cta{margin-top:8px;font-size:.86rem;font-weight:600;color:var(--laranja)}
+
+/* ---------- preços ---------- */
+.prices{color:var(--bone);background:var(--toca);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.prices h2{font-family:var(--display);font-weight:400;font-size:1.45rem;letter-spacing:.01em;margin:0 0 2px}
+.prices p{margin:0 0 10px;color:var(--ash);font-size:.85rem}
+.prices ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:6px 18px}
 .prices li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:.92rem}
-.prices li span:last-child{font-variant-numeric:tabular-nums;color:var(--ember);font-weight:600}
-.prices .days{font-style:normal;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ember);border:1px solid var(--ember-dim);border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:1px}
-@media (max-width:360px){.prices ul{grid-template-columns:1fr}}
+.prices li span:last-child{font-variant-numeric:tabular-nums;color:var(--laranja);font-weight:600}
+.prices .days{font-style:normal;font-family:var(--label);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja);border:1px solid var(--brasa);border-radius:4px;padding:0 4px;margin-left:4px;vertical-align:1px}
+@media (max-width:360px){.prices ul{grid-template-columns:1fr;grid-auto-flow:row;grid-template-rows:none}}
 
 footer{text-align:center;color:var(--ink-soft);font-size:.8rem;display:flex;flex-direction:column;gap:4px}
 footer strong{color:var(--ink);font-weight:600}
@@ -156,26 +142,44 @@ footer strong{color:var(--ink);font-weight:600}
 <body>
 <div class="wrap">
   <header>
-    <div class="lair" aria-hidden="true">
-      <svg viewBox="0 0 230 156">
-        <polygon class="rock" points="0,156 10,134 20,138 30,106 42,110 62,40 72,56 86,46 98,26 106,34 116,0 128,24 140,16 152,48 164,42 178,72 190,67 206,110 216,106 230,156"/>
-        <polyline class="facet" points="116,0 121,30 111,50"/>
-        <polyline class="facet" points="62,40 66,72"/>
-        <polyline class="facet" points="140,16 135,40"/>
-        <polyline class="facet" points="178,72 173,94 183,102"/>
-        <polyline class="facet" points="30,106 34,128"/>
-        <polygon class="hole" points="60,156 64,130 74,110 90,92 108,82 124,84 140,94 152,112 160,132 168,156"/>
-        <polygon class="rock" points="198,156 203,146 215,143 222,156"/>
+    <div class="brand">
+      <svg viewBox="0 0 400 260" role="img" aria-label="Logo da Toca do Roshan: montanha com a caverna, a joia e os olhos do Roshan">
+        <defs>
+          <radialGradient id="joia" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#FFFFFF"></stop>
+            <stop offset="55%" stop-color="#FFF4E6"></stop>
+            <stop offset="100%" stop-color="#F6C98A"></stop>
+          </radialGradient>
+        </defs>
+        <polygon points="10,250 80,130 100,148 140,70 205,8 240,70 262,58 300,96 330,150 352,140 392,250" fill="#D2610F"></polygon>
+        <polygon points="80,130 100,148 140,70 205,8 180,105 140,160 118,250 45,250" fill="#F28C1B"></polygon>
+        <polygon points="205,8 240,70 262,58 300,96 330,150 352,140 392,250 300,250 280,160 230,110 212,60" fill="#9A3208"></polygon>
+        <polygon points="262,58 300,96 288,120 268,86" fill="#B84A0C"></polygon>
+        <polyline points="205,8 180,105 140,160 118,250" fill="none" stroke="#EFE7DA" stroke-width="6"></polyline>
+        <polyline points="205,8 212,60 230,110 280,160 300,250" fill="none" stroke="#EFE7DA" stroke-width="6"></polyline>
+        <polyline points="80,130 92,190 84,250" fill="none" stroke="#EFE7DA" stroke-width="5"></polyline>
+        <polyline points="352,140 344,200 360,250" fill="none" stroke="#EFE7DA" stroke-width="5"></polyline>
+        <polygon points="150,250 162,200 185,165 205,152 226,162 248,196 258,250" fill="#1E1C1A"></polygon>
+        <g class="gaze">
+          <circle class="halo" cx="205" cy="190" r="16" fill="#F28C1B" opacity=".25"></circle>
+          <circle cx="205" cy="190" r="10" fill="url(#joia)"></circle>
+          <polygon class="glint" points="213,176 215,182 221,184 215,186 213,192 211,186 205,184 211,182" fill="#FFFFFF"></polygon>
+          <polygon class="eye" points="180,207 199,218 185,218" fill="#FFF4E6"></polygon>
+          <polygon class="eye" points="230,207 211,218 225,218" fill="#FFF4E6"></polygon>
+        </g>
       </svg>
-      <span class="gaze"><i class="eye top"></i><i class="eye l"></i><i class="eye r"></i></span>
+      <h1 class="wordmark">
+        <span class="top">TOCA DO</span>
+        <span class="name">ROSHAN</span>
+        <span class="pill">LUDERIA</span>
+      </h1>
     </div>
-    <h1>Toca do <span>Roshan</span></h1>
     <p class="tag">Aluguel de jogos de tabuleiro em Russas. Leve pra casa, jogue com a galera e devolva em 3 ou 4 dias.</p>
     <div class="handle">@tocadoroshan_</div>
   </header>
 
   <section class="group" aria-label="Alugar jogos">
-    <a class="link main" href="https://bgevents.com.br/c/toca-do-roshan" target="_blank" rel="noopener">
+    <a class="link main" href="https://bgevents.com.br/accept-invite/5e868837308c73030c33d57432cadbf3" target="_blank" rel="noopener">
       <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/></svg></span>
       <span class="t"><b>Ver acervo e alugar</b><small>Reservas e aluguéis pela plataforma BGE</small></span>
       <span class="go" aria-hidden="true">→</span>
@@ -185,22 +189,30 @@ footer strong{color:var(--ink);font-weight:600}
       <li><i>2</i>Retire na loja</li>
       <li><i>3</i>Devolva em 3 ou 4 dias</li>
     </ol>
+    <a class="link" href="https://bgevents.com.br/c/toca-do-roshan" target="_blank" rel="noopener">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+      <span class="t"><b>Vitrine do acervo</b><small>Só para olhar os jogos da loja</small></span>
+      <span class="go" aria-hidden="true">→</span>
+    </a>
   </section>
 
-  <a class="event" href="https://bgevents.com.br/s/94X2yL89kqOhgRFpJFG5TNh43y4SYsiyoasFmGTLY04" target="_blank" rel="noopener" aria-label="Noite de jogos: ver evento no BGE">
+  <section class="group" aria-label="Eventos">
+    <p class="label">Eventos</p>
+  <a class="event" id="evento" href="https://chat.whatsapp.com/BLXPto02K8t8zwgWqMfGYc" target="_blank" rel="noopener" aria-label="Noite de jogos: nova data em breve">
     <div class="cal" aria-hidden="true">
-      <span class="dow">Sáb</span>
-      <span class="day" id="ev-day">—</span>
-      <span class="mon" id="ev-mon">&nbsp;</span>
+      <span class="dow" id="ev-dow">Data</span>
+      <span class="day" id="ev-day">?</span>
+      <span class="mon" id="ev-mon">em breve</span>
     </div>
     <div class="ev-body">
-      <span class="ev-kicker" id="ev-when">Toda semana</span>
+      <span class="ev-kicker" id="ev-when">Próxima edição</span>
       <b>Noite de jogos</b>
-      <span class="ev-info">18h às 00h · Maria Flor Eventos</span>
-      <span class="ev-info">R. Dr. João Maciel Pereira, 2397 · N. Sra. de Fátima</span>
-      <span class="ev-cta">Ver evento no BGE →</span>
+      <span class="ev-info" id="ev-info1">Nova data em breve</span>
+      <span class="ev-info" id="ev-info2">Fique de olho no grupo da Toca para não perder</span>
+      <span class="ev-cta" id="ev-cta">Entrar no grupo da Toca →</span>
     </div>
   </a>
+  </section>
 
   <section class="group" aria-label="Comunidade">
     <p class="label">Comunidade</p>
@@ -226,7 +238,7 @@ footer strong{color:var(--ink);font-weight:600}
   </section>
 
   <section class="prices">
-    <h2>Quanto custa</h2>
+    <h2>QUANTO CUSTA</h2>
     <p>Valor por aluguel de 3 dias, conforme a categoria do jogo. Na categoria Pesadão, o prazo é de 4 dias.</p>
     <ul>
       <li><span>Simples</span><span>R$ 10</span></li>
@@ -244,18 +256,48 @@ footer strong{color:var(--ink);font-weight:600}
   </footer>
 </div>
 <script>
+/* ================= PRÓXIMO EVENTO: edite só este bloco =================
+   data: "AAAA-MM-DD" (ex.: "2026-11-21"). Deixe "" para mostrar "Nova data em breve".
+   link: link do evento no BGE. Deixe "" para o cartão levar ao grupo do WhatsApp.
+   Depois que a data passa (à meia-noite do dia do evento), o cartão volta
+   sozinho para "Nova data em breve", sem precisar mexer em nada.
+   ======================================================================== */
+var PROXIMO_EVENTO = {
+  data: "",
+  horario: "18h às 00h",
+  local: "Maria Flor Eventos",
+  endereco: "R. Dr. João Maciel Pereira, 2397 · N. Sra. de Fátima",
+  link: ""
+};
+
 (function(){
   try{
+    var ev=PROXIMO_EVENTO, m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(ev.data||"");
+    if(!m) return; /* sem data: fica "Nova data em breve" */
+    var dia=new Date(+m[1], +m[2]-1, +m[3]);
+    var fim=new Date(+m[1], +m[2]-1, +m[3]+1); /* termina à meia-noite */
+    var agora=new Date();
+    if(isNaN(dia) || agora>=fim) return; /* data já passou: volta para "em breve" */
     var meses=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
-    var now=new Date(), d=new Date(now);
-    var diff=(6-now.getDay()+7)%7;
-    d.setDate(now.getDate()+diff);
-    document.getElementById("ev-day").textContent=String(d.getDate()).padStart(2,"0");
-    document.getElementById("ev-mon").textContent=meses[d.getMonth()];
-    var when=document.getElementById("ev-when");
-    if(diff===0) when.textContent="Hoje à noite";
-    else if(diff===1) when.textContent="Amanhã";
-    else when.textContent="Próximo sábado";
+    var semana=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+    var hoje=new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
+    var diff=Math.round((dia-hoje)/86400000);
+    var $=function(id){return document.getElementById(id);};
+    $("ev-dow").textContent=semana[dia.getDay()];
+    $("ev-day").textContent=String(dia.getDate()).padStart(2,"0");
+    $("ev-mon").textContent=meses[dia.getMonth()];
+    $("ev-when").textContent= diff===0 ? "Hoje à noite" : diff===1 ? "Amanhã" : "Próxima edição";
+    $("ev-info1").textContent=ev.horario+" · "+ev.local;
+    $("ev-info2").textContent=ev.endereco;
+    var a=$("evento");
+    if(ev.link){
+      a.href=ev.link;
+      $("ev-cta").textContent="Ver evento no BGE →";
+      a.setAttribute("aria-label","Noite de jogos: ver evento no BGE");
+    }else{
+      $("ev-cta").textContent="Mais informações no grupo →";
+      a.setAttribute("aria-label","Noite de jogos: mais informações no grupo");
+    }
   }catch(e){}
 })();
 </script>
